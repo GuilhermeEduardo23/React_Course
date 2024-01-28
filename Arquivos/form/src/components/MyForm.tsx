@@ -1,15 +1,28 @@
 import { FormEvent, useState } from "react";
 import "./MyForm.module.css";
 
-const MyForm = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+interface User {
+    name: string;
+    email: string;
+    bio: string;
+    role: string;
+}
+
+const MyForm = ({user}: {user: User}) => {
+    const [name, setName] = useState(user ? user.name : '');
+    const [email, setEmail] = useState(user ? user.email : '');
+    const [bio, setBio] = useState(user ? user.bio : '');
+    const [role, setRole] = useState(user ? user.role : "");
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log("Enviando o formulário");
-        console.log(name);
-        console.log(email);
+        console.log(name, email, bio, role);
+
+        setName("");
+        setEmail("");
+        setBio("");
+        setRole("")
     }
 
   return (
@@ -19,12 +32,28 @@ const MyForm = () => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Nome:</label>
-                <input type="text" name="name" placeholder="Digite o seu nome" onChange={e => setName(e.target.value)}/>
+                <input type="text" name="name" placeholder="Digite o seu nome" onChange={e => setName(e.target.value)} value={name}/>
             </div>
             <label>
                 <span>E-mail</span>
-                <input type="email" name="email" placeholder="Digite o seu e-mail" onChange={e => setEmail(e.target.value)}/>
+                <input type="email" name="email" placeholder="Digite o seu e-mail" onChange={e => setEmail(e.target.value)} value={email}/>
             </label>
+
+            {/* Textarea */}
+            <label>
+                <span>Bio:</span>
+                <textarea name="bio" placeholder="Descrição do usuário" onChange={e => setBio(e.target.value)} value={bio}></textarea>
+            </label>
+
+            {/* Select */}
+            <label>
+                <span>Função no Sistema:</span>
+                <select name="role" onChange={e => setRole(e.target.value)} value={role}>
+                    <option value="user">Usuário</option>
+                    <option value="editor">Editor</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                </label>
             <input type="submit" value="Enviar" />
         </form>
     </div>

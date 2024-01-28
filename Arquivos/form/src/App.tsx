@@ -5,7 +5,7 @@ import MyForm from "./components/MyForm"
 function App() {
   return (
     <>
-      <MyForm />
+      <MyForm user={{name: 'Guilherme', email: "guilhermeeduardoroo@gmail.com", bio: "Eu sou programador", role: "admin"}}/>
     </>
   )
 }
