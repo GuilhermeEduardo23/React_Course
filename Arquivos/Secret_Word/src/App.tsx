@@ -30,20 +30,26 @@ function App() {
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * Object.keys(categories).length)];
 
-    console.log(category);
-
     // Pick a random word
     const word = words[category][Math.floor(Math.random() * words[category].length)];
-
-    console.log(word);
 
     return {word, category};
   } 
 
   // Starts the secret word game
   const startGame = () => {
-    const {word, category} = pickWordAndCategory();
     // Pick Word and Pick Category
+    const {word, category} = pickWordAndCategory();
+
+    // Create an array of letters
+    let wordLetters: string[] = word.split("");
+    
+    wordLetters = wordLetters.map(l => l.toLowerCase());
+
+    // Fill states
+    setPickedWord(word);
+    setPicketCategory(category);
+    setLetters(letters);
 
     setGameStage(stages[1].name);
   }
