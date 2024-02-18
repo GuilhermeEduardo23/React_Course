@@ -29,6 +29,11 @@
       "id": "91b4",
       "name": "Garrafa",
       "price": "5.0"
+    },
+    {
+      "id": "d679",
+      "name": "Morango",
+      "price": "10.0"
     }
   ]
 }
