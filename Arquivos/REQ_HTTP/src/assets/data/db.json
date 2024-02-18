@@ -34,6 +34,21 @@
       "id": "d679",
       "name": "Morango",
       "price": "10.0"
+    },
+    {
+      "id": "7163",
+      "name": "Suporte Monitor",
+      "price": "120"
+    },
+    {
+      "id": "5ab4",
+      "name": "Mouse",
+      "price": "60"
+    },
+    {
+      "id": "9f02",
+      "name": "Teclado",
+      "price": "50"
     }
   ]
 }
