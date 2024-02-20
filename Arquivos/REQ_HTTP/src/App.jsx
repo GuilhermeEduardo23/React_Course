@@ -30,13 +30,8 @@ function App() {
     setPrice("");
   }
 
-  const removeProduct = async (e) => {
-    e.preventDefault();
-
-    console.log("clicou");
-    console.log(items.id);
-
-    //httpConfig(product, "DELETE");
+  const handleRemove = (id) => {
+    httpConfig(product, "DELETE");
   }
 
   return (
@@ -52,7 +47,7 @@ function App() {
               {product.name} - R$: {product.price}
               <button 
                 style={{marginLeft: 5}} 
-                onClick={removeProduct}
+                onClick={() => handleRemove(product.id)}
               >
                 -
               </button>
