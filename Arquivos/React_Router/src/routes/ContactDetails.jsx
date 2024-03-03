@@ -1,14 +1,21 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ContactDetails = () => {
-    const {id} = useParams
+  const { id } = useParams();
+
+  // 6 - redirect
+  const navigate = useNavigate();
+
+  const handleContact = () => {
+    console.log("Contato enviado");
+    
+    return navigate("/");
+  }
 
   return (
     <>
-        {/* 5 - nested routes */}
-        <p><Link to="/contact/1">Forma de contato 1</Link></p>
-        <p><Link to="/contact/2">Forma de contato 2</Link></p>
-        <p><Link to="/contact/3">Forma de contato 3</Link></p>
+      <h1>Exibindo mais informações do contato: {id}</h1>
+      <button onClick={handleContact}>Enviar mensagem</button>
     </>
   )
 }
