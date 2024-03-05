@@ -12,6 +12,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import Sobre from './routes/Sobre.jsx';
 import Product from './routes/Product.jsx';
 import Info from './routes/Info.jsx';
+import Search from './routes/Search.jsx';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,16 @@ const router = createBrowserRouter([
       {
         path: "oldcontact",
         element: <Navigate to="/contact" />,
-      }
+      },
+      {
+        path: "search",
+        element: <Search />
+      },
+      // 10 - redirect
+      {
+        path: "company",
+        element: <Navigate to="about" />
+      },
     ],
   },
 ]);
