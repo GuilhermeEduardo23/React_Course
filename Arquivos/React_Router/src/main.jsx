@@ -11,6 +11,7 @@ import ContactDetails from './routes/ContactDetails.jsx';
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import Sobre from './routes/Sobre.jsx';
 import Product from './routes/Product.jsx';
+import Info from './routes/Info.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "products/:id",
         element: <Product />
+      },
+      {
+        path: "/products/:id/info",
+        element: <Info />
       },
       // 5 - nested routes - identificador único - dynamic routes
       {
