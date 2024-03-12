@@ -9,6 +9,9 @@ import Home from "./routes/Home.jsx";
 import Contact from "./routes/Contact.jsx";
 import About from "./routes/About.jsx";
 
+import { CounterContextProvider } from './context/CounterContext.jsx';
+import { TitleColorContextProvider } from './context/TitleColorContext.jsx';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +36,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* 2 - criando provider */}
+    <CounterContextProvider>
+      <TitleColorContextProvider>
+        <RouterProvider router={router} />
+      </TitleColorContextProvider>
+    </CounterContextProvider>
   </React.StrictMode>,
 )

@@ -1,5 +1,5 @@
 // 2 - links com react router
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 
