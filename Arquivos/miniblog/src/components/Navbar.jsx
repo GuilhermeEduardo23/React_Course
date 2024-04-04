@@ -7,7 +7,10 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
     const links = [
         {id: 1, to: "/home", name: "Home"},
-        {id: 2, to: "/about", name: "Sobre"},
+        {id: 2, to: "/login", name: "Entrar"},
+        {id: 3, to: "/register", name: "Cadastrar"},
+        {id: 4, to: "/about", name: "Sobre"},
+        
     ];
 
   return (
