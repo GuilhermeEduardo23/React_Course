@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 // CSS
 import styles from "./Navbar.module.css";
 
+import { useAuthentication } from "../hooks/useAuthentication";
+
+import { useAuthValue } from "../context/AuthContext";
+
 const Navbar = () => {
-    const links = [
-        {id: 1, to: "/home", name: "Home"},
-        {id: 2, to: "/login", name: "Entrar"},
-        {id: 3, to: "/register", name: "Cadastrar"},
-        {id: 4, to: "/about", name: "Sobre"},
-        
-    ];
+    const {user} = useAuthValue();
+
+    if(user) console.log("deu certo")
 
   return (
     <nav className={styles.navbar}>
@@ -20,11 +20,32 @@ const Navbar = () => {
         </NavLink>
 
         <ul className={styles.links_list}>
-            {links.map(link => (
-                <li key={link.id}>
-                    <NavLink to={link.to} className={({isActive}) => (isActive ? styles.active : "")}>{link.name}</NavLink>
+            <li>
+                <NavLink to="/home" className={({isActive}) => (isActive ? styles.active : "")}>Home</NavLink>
+            </li>
+           {!user && (
+            <>
+                <li>
+                    <NavLink to="/login" className={({isActive}) => (isActive ? styles.active : "")}>Entrar</NavLink>
                 </li>
-            ))}
+                <li>
+                    <NavLink to="/register" className={({isActive}) => (isActive ? styles.active : "")}>Cadastrar</NavLink>
+                </li>
+            </>
+           )}
+           {user && (
+            <>
+                <li>
+                 <NavLink to="/posts/create" className={({isActive}) => (isActive ? styles.active : "")}>Novo post</NavLink>
+                </li>
+                <li>
+                 <NavLink to="/dashboard" className={({isActive}) => (isActive ? styles.active : "")}>Dashboard</NavLink>
+                </li>
+            </>
+           )}
+            <li>
+                <NavLink to="/about" className={({isActive}) => (isActive ? styles.active : "")}>Sobre</NavLink>
+            </li>
         </ul>
     </nav>
   )

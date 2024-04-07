@@ -18,6 +18,8 @@ import Home from './routes/Home/Home.jsx';
 import About from './routes/About/About.jsx';
 import Login from './routes/Login/Login.jsx';
 import Register from './routes/Register/Register.jsx';
+import CreatePost from './routes/CreatePost/CreatePost.jsx';
+import Dashboard from './routes/Dashboard/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "/post/create",
+        element: <CreatePost />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
       },
     ]
   },
