@@ -200,7 +200,7 @@ countWrong;
 const count = book.reviews.librarything.reviewsCount ?? "NO DATA";
 count;
 
-print(getTotalReviewCount(book));*/
+print(getTotalReviewCount(book));
 
 function getTotalReviewCount(book) {
   const goodreads = book.reviews.goodreads?.reviewsCount;
@@ -265,3 +265,16 @@ const booksAfterUpdate = booksAfterDelete.map(book =>
 );
 
 booksAfterUpdate;
+
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then(res => res.json())
+  .then((data) => console.log(data));*/
+
+async function getTodos(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}
+
+const todos = await getTodos("https://jsonplaceholder.typicode.com/todos");
+console.log(todos);
