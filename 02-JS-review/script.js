@@ -143,7 +143,7 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-/* Destructuring
+// Destructuring
 const book = getBook(2);
 book;
 
@@ -164,7 +164,7 @@ const updatedBook = {
 };
 updatedBook;
 
-const getYear = str => str.split("-")[0];
+/*const getYear = str => str.split("-")[0];
 
 const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(publicationDate)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 summary;
@@ -188,19 +188,16 @@ print(0 && "Some string");
 print(true || "Some string");
 print(false || "Some string");
 
-print(book.translations.spanish);
+print(book.translations.spanish);*/
 
 const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED';
 spanishTranslation;
 
-print(book.reviews.librarything.reviewsCount);
 const countWrong = book.reviews.librarything.reviewsCount || "NO DATA";
 countWrong;
 
 const count = book.reviews.librarything.reviewsCount ?? "NO DATA";
 count;
-
-print(getTotalReviewCount(book));
 
 function getTotalReviewCount(book) {
   const goodreads = book.reviews.goodreads?.reviewsCount;
@@ -208,12 +205,11 @@ function getTotalReviewCount(book) {
   return goodreads + librarything;
 }
 
-const print = print => console.log(print);
-
 const books = getBooks();
+books;
 
 const titles = books.map(book => book.title);
-print(titles);
+titles;
 
 const essentialData = books.map(book => ({
   title: book.title,
@@ -223,7 +219,7 @@ const essentialData = books.map(book => ({
 
 //essentialData;
 
-const longBooksWithMovie = books
+/*const longBooksWithMovie = books
   .filter(book => book.pages > 500)
   .filter(book => book.hasMovieAdaptation);
 longBooksWithMovie;
@@ -240,7 +236,7 @@ pagesAllBooks;
 const x = [3, 7, 1, 9, 6];
 const sorted = x.slice().sort((a, b) => a - b);
 sorted;
-x;
+x;*/
 
 const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
 sortedByPages;
@@ -266,15 +262,14 @@ const booksAfterUpdate = booksAfterDelete.map(book =>
 
 booksAfterUpdate;
 
-fetch("https://jsonplaceholder.typicode.com/todos")
+/*fetch("https://jsonplaceholder.typicode.com/todos")
   .then(res => res.json())
-  .then((data) => console.log(data));*/
+  .then((data) => console.log(data));
 
 async function getTodos(url) {
   const res = await fetch(url);
   const data = await res.json();
-  return data;
+  console.log(data);
 }
 
-const todos = await getTodos("https://jsonplaceholder.typicode.com/todos");
-console.log(todos);
+getTodos("https://jsonplaceholder.typicode.com/todos");*/
