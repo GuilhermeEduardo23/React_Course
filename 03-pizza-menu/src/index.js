@@ -49,17 +49,15 @@ const pizzaData = [
 
 function App() {
     return (
-        <div className='container'>
+        <>
             <Header />
             <Menu />
             <Footer />
-        </div>
+        </>
     );
 }
 
 function Header() {
-    //const style = {color: 'red', fontSize: '48px', textTransform: 'uppercase'};
-
     return (
         <header className='header'>
             <h1>Fast React Pizza Co.</h1>
@@ -68,42 +66,46 @@ function Header() {
 }
 
 function Menu() {
-    const pizzas = [];
+    const pizzas = pizzaData;
     const numPizzas = pizzas.length;
 
     return (
         <main className='menu'>
             <h2>Our menu</h2> 
-
             {numPizzas > 0 ? (
-                <ul className='pizzas'>
-                    {pizzas.map((pizza) => (
-                        <Pizza pizzaObj={pizza} key={pizza.name} />
-                    ))}
-                </ul>
-            ) : <p>We're still working on our menu. Please come back later :)</p>}
-            {/* <Pizza
-                name="Pizza Spinaci"
-                ingredient="Tomato, mozarella, spinach, and ricotta cheese"
-                photoName="pizzas/spinaci.jpg"
-                price={10}
-            /> */}
+                <>
+                    <p>
+                        Authentic Italian cuisine. 6 criative dishes to choose from. All from our stone, all organic, all delicious.
+                    </p>
+                    <ul className='pizzas'>
+                        {pizzas.map((pizza) => (
+                            <Pizza pizzaObj={pizza} key={pizza.name} />
+                        ))}
+                    </ul>
+                </>
+            ) : 
+                <p>
+                    We're still working on our menu. Please come back later :)
+                </p>
+            }
         </main>
     ) 
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
     return (
-        <div className='pizza'>
-            <img src={props.photoName} alt={props.name}/>
-            <h3>{props.name}</h3>
-            <p>{props.ingredient}</p>
-            <span>{props.price + 3}</span>
-        </div>
+        <li className={`pizza ${pizzaObj.soldOut && "sold-out"}`}>
+            <img src={pizzaObj.photoName} alt={pizzaObj.name}/>
+            <div>
+                <h3>{pizzaObj.name}</h3>
+                <p>{pizzaObj.ingredients}</p>
+                <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+            </div>
+        </li>
     );
 }
 
-function Footer() {
+function Footer(props) {
     const hour = new Date().getHours();
     const openHour = 12;
     const closeHour = 22;
@@ -112,15 +114,19 @@ function Footer() {
     return (
         <footer className='footer'>
             {isOpen ? (
-                <div className='order'>
-                    <p>We're open until {closeHour}:00. Come visit us or order online.</p>
-                    <button className='btn'>Order</button>
-                </div>
+                <Order closeHour={closeHour} openHour={openHour} />
             ) : <p>We're happy to welcome you between {openHour}:00 and {closeHour}:00.</p>}
         </footer>
     );
-    
-    //return React.createElement('footer', null, "We're currently open!");
+}
+
+function Order({ closeHour, openHour }) {
+    return (
+        <div className='order'>
+            <p>We're open from {openHour} {closeHour}:00. Come visit us or order online.</p>
+            <button className='btn'>Order</button>
+        </div>
+    )
 }
 
 //React v18
