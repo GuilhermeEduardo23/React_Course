@@ -130,3 +130,9 @@ input[type="checkbox"] {
   font-weight: 700;
   padding: 3.2rem 0;
 }
+
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}

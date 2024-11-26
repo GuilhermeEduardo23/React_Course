@@ -1,16 +1,10 @@
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: true },
-  { id: 3, description: "Charger", quantity: 1, packed: false },
-];
-
 export default function App() {
   const [items, setItems] = useState([]);
   
   function handleAddItems(item) {
-    setItems(items => [items, item]);
+    setItems(items => [...items, item]);
   }
 
   function handleDeleteItem(id) {
@@ -22,7 +16,7 @@ export default function App() {
   }
 
   return <div className="app">
-    <Logo />
+    <Logo/>
     <Form onAddItems={handleAddItems}/>
     <PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItem={handleToggleItem}/>
     <Stats items={items}/>
@@ -46,10 +40,10 @@ function Form({onAddItems}) {
     }
 
     const newItem = {
+      id: Date.now(),
       description,
       quantity,
       packed: false,
-      id: Date.now()
     };
 
     onAddItems(newItem);
@@ -94,12 +88,17 @@ function PackingList({ items, onDeleteItem, onToggleItem }) {
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
 
-  return <div>
-      <ul className="list">
+  return <div className="list">
+      <ul>
         {sortedItems.map(item => (
-          <Item item={item} onDeleteItem={onDeleteItem} key={item.id} onToggleItem={onToggleItem}/>
+          <Item 
+            key={item.id} 
+            item={item} 
+            onDeleteItem={onDeleteItem} 
+            onToggleItem={onToggleItem}
+          />
         ))}
-    </ul>
+      </ul>
 
     <div className="actions">
       <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
