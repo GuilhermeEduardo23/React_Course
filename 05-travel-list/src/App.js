@@ -81,8 +81,8 @@ function Form({onAddItems}) {
 function PackingList({ items, onDeleteItem, onToggleItem }) {
   return <div>
       <ul className="list">
-        {items.map(item => (
-          <Item item={item} onDeleteItem={onDeleteItem} key={item.id} onToggleItem={onToggleItem}/>
+        {items.map((item, index) => (
+          <Item item={item} onDeleteItem={onDeleteItem} key={index} onToggleItem={onToggleItem}/>
         ))}
     </ul>
   </div> 
