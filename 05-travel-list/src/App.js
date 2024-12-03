@@ -1,16 +1,10 @@
 import { useState } from "react";
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: true },
-  { id: 3, description: "Charger", quantity: 1, packed: false },
-];
-
 export default function App() {
   const [items, setItems] = useState([]);
   
   function handleAddItems(item) {
-    setItems(items => [items, item]);
+    setItems(items => [...items, item]);
   }
 
   function handleDeleteItem(id) {
@@ -22,7 +16,7 @@ export default function App() {
   }
 
   return <div className="app">
-    <Logo />
+    <Logo/>
     <Form onAddItems={handleAddItems}/>
     <PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItem={handleToggleItem}/>
     <Stats items={items}/>
@@ -46,10 +40,10 @@ function Form({onAddItems}) {
     }
 
     const newItem = {
+      id: Date.now(),
       description,
       quantity,
       packed: false,
-      id: Date.now()
     };
 
     onAddItems(newItem);
@@ -81,10 +75,19 @@ function Form({onAddItems}) {
 function PackingList({ items, onDeleteItem, onToggleItem }) {
   return <div>
       <ul className="list">
-        {items.map((item, index) => (
-          <Item item={item} onDeleteItem={onDeleteItem} key={index} onToggleItem={onToggleItem}/>
+        {items.map(item => (
+          <Item item={item} onDeleteItem={onDeleteItem} key={item.id} onToggleItem={onToggleItem}/>
         ))}
-    </ul>
+      </ul>
+
+    <div className="actions">
+      <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
+        <option value="input">Sort by input order</option>
+        <option value="description">Sort by description</option>
+        <option value="packed">Sort by packed status</option>
+      </select>
+      <button>Clear list</button>
+    </div>
   </div> 
 }
 
