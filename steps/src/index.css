@@ -63,6 +63,8 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #fff;
+  background-color: #7950f2;
 }
 
 .buttons button span {
