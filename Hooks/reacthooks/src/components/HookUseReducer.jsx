@@ -9,8 +9,8 @@ const HookUseReducer = () => {
   // 2 - avançando no useReducer
   const initialTasks = [
     { id: 1, text: "Fazer alguma coisa" },
-    { id: 2, text: "Fazer outra coisa" },
-  ];
+    { id: 2, text: "Fazer outra coisa" }
+  ]
 
   const taskReducer = (state, action) => {
     switch (action.type) {
