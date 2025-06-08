@@ -7,11 +7,13 @@ const HookUseReducer = () => {
   });
 
   // 2 - avançando no useReducer
-  const initialTasks = [
-    { id: 1, text: "Fazer alguma coisa" },
-    { id: 2, text: "Fazer outra coisa" }
-  ]
 
+  const initialTasks = [
+    { id: 1, text: "Study React" },
+    { id: 2, text: "Study Java" },
+  ];
+
+  // aqui podemos criar uma função direta para usar o hook useReducer
   const taskReducer = (state, action) => {
     switch (action.type) {
       case "ADD":
@@ -26,6 +28,11 @@ const HookUseReducer = () => {
 
       case "DELETE":
         return state.filter((task) => task.id !== action.id);
+
+      /*case "COMPLETE":
+        return state.filter((task) => (
+          pensar em como aplicar cor verde marcando como concluído
+        ))*/
 
       default:
         return state;
@@ -45,23 +52,39 @@ const HookUseReducer = () => {
     dispatchTasks({ type: "DELETE", id });
   };
 
+  const taskCompleted = (id) => {
+    dispatchTasks({ type: "COMPLETE", id });
+  };
+
   return (
     <div>
       <h2>useReducer</h2>
       <p>Número: {number}</p>
-      <button onClick={dispatch}>Alterar número!</button>
+      <button onClick={dispatch}>Clique aqui para alterar o número!</button>
+      <hr />
       <h3>Tarefas:</h3>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          onChange={(e) => setTaskText(e.target.value)}
           value={taskText}
+          onChange={(e) => setTaskText(e.target.value)}
         />
-        <input type="submit" value="Enviar" />
+        <button>Add Task</button>
       </form>
       {tasks.map((task) => (
-        <li key={task.id} onDoubleClick={() => removeTask(task.id)}>
+        <li key={task.id}>
           {task.text}
+          <div>
+            <button
+              onClick={() => taskCompleted(task.id)}
+              className="buttonTasks"
+            >
+              ✅
+            </button>
+            <button onClick={() => removeTask(task.id)} className="buttonTasks">
+              ❌
+            </button>
+          </div>
         </li>
       ))}
     </div>
