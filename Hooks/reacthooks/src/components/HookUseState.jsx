@@ -4,19 +4,26 @@ const HookUseState = () => {
   // 1 - useState
   let userName = "João";
   const [name, setName] = useState("João");
-  
+  const [nameRemoved, setNameRemoved] = useState(false);
+
   const changeNames = () => {
     setName("Guilherme");
     setNameRemoved(false);
-
   };
-  
-  const [nameRemoved, setNameRemoved] = useState(false);
 
   const removeName = () => {
     setName("");
     setNameRemoved(true);
   };
+
+  // 2 - useState e input
+  const [age, setAge] = useState(18);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(age);
+  }
 
   return (
     <div>
@@ -46,6 +53,18 @@ const HookUseState = () => {
             Clique aqui para remover o nome alterado!
           </button>
         )}
+
+        {/* 2 - useState e input */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            placeholder="Digite sua idade"
+          />
+          <button type="submit">Enviar</button>
+        </form>
+        <p>Você tem {age} anos!</p>
       </div>
     </div>
   );
