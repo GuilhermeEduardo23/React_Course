@@ -2,47 +2,51 @@ import { useState } from "react";
 
 const HookUseState = () => {
   // 1 - useState
-  let username = "Guilherme";
-
-  const [name, setName] = useState("Guilherme");
-
+  let userName = "João";
+  const [name, setName] = useState("João");
+  
   const changeNames = () => {
-    // A variável username, não é alterada, pois o React não permite
-    username = "Vitor Souza";
-    console.log(name);
-    if (name === "Guilherme") setName("Vitor Souza");
-    else setName("Guilherme");
+    setName("Guilherme");
+    setNameRemoved(false);
+
   };
+  
+  const [nameRemoved, setNameRemoved] = useState(false);
 
-  // 2 - useState e input
-  const [age, setAge] = useState(18);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(age);
+  const removeName = () => {
+    setName("");
+    setNameRemoved(true);
   };
 
   return (
     <div>
       {/* 1 - useState */}
       <h2>useState</h2>
-      <p>Variável: {username}</p>
-      <p>useState: {name}</p>
-      <button onClick={changeNames}>Mudar nomes!</button>
-      {/* 2 - useState e input */}
-      <p>Digite a sua idade:</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <p>
-          {name}, você tem {age} anos.
-        </p>
-        <input type="submit" value="Enviar" />
-      </form>
+      <p>Variável: {userName}</p>
+
+      {nameRemoved ? (
+        <p>Não há mais nenhum nome aqui!</p>
+      ) : (
+        <p>useState: {name}</p>
+      )}
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          width: "20%",
+          margin: "10px",
+        }}
+      >
+        <button onClick={changeNames}>Clique aqui para alterar o nome!</button>
+
+        {!nameRemoved && (
+          <button onClick={removeName}>
+            Clique aqui para remover o nome alterado!
+          </button>
+        )}
+      </div>
     </div>
   );
 };

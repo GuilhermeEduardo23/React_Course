@@ -1,9 +1,10 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
 //Pages
 import Home from './pages/Home';
 import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -11,12 +12,20 @@ function App() {
       <h1>React Hooks</h1>
       <BrowserRouter>
         <ul>
-          <Link to="/">Home</Link>
-          <Link to="/about">Sobre</Link>
+          <li>
+            <Link to='/'>HOME</Link>
+          </li>
+          <li>
+            <Link to='/about'>ABOUT</Link>
+          </li>
+          <li>
+            <Link to='/contact'>CONTACT</Link>
+          </li>
         </ul>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,6 +4,7 @@ import HookUseState from "../components/HookUseState";
 const Home = () => {
   return (
     <div>
+      <h1>HOME</h1>
       <HookUseState />
       <HookUseReducer />
     </div>
