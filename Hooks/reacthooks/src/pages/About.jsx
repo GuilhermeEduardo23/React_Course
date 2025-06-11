@@ -1,7 +1,16 @@
-const About = () => {
-  return (
-    <h1>ABOUT</h1>
-  )
-}
+// useContext
+import { useContext } from "react";
+import { SomeContext } from "../components/HookUseContext";
 
-export default About
+const About = () => {
+  const { contextValue } = useContext(SomeContext);
+
+  return (
+    <div>
+      <h1>ABOUT</h1>
+      <p>Valor do context: {contextValue}</p>
+    </div>
+  );
+};
+
+export default About;
