@@ -5,8 +5,9 @@
 }
 
 body {
-  background-color: #000;
+  background-color: #15592f;
   color: #ffffff;
+  padding: 20px;
 }
 
 button, input[type="text"] {
