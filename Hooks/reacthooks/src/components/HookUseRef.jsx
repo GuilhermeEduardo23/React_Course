@@ -20,7 +20,7 @@ const HookeUseRef = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setName((names) => [...names, text]);
+    setName(arrayNames => [...arrayNames, text]);
     setText("");
 
     inputRef.current.focus();
@@ -60,6 +60,8 @@ const HookeUseRef = () => {
             <li key={index}>{names}</li>
         ))}
       </ul>
+
+      <hr />
     </div>
   );
 };
