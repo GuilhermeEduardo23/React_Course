@@ -21,12 +21,24 @@ const userCreateValidation = () => {
       .isString()
       .withMessage("A confirmação de senha é obrigatória.")
       .custom((value, { req }) => {
-        if (value != req.body.password)
+        if (value != req.body.password) {
           throw new Error("As senhas não são iguais.");
+        }
 
         return true;
       }),
   ];
 };
 
-module.exports = { userCreateValidation };
+const loginValidation = () => {
+  return [
+    body("email")
+      .isString()
+      .withMessage("O campo email é obrigatório.")
+      .isEmail()
+      .withMessage("Insira um email válido."),
+    body("password").isString().withMessage("A senha é obrigatória."),
+  ];
+};
+
+module.exports = { userCreateValidation, loginValidation };

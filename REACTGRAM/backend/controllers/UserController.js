@@ -44,6 +44,12 @@ const register = async (req, res) => {
   res.status(201).json({ _id: newUser.id, token: generateToken(newUser.id) });
 };
 
+// Sign user in
+const login = (req, res) => {
+  res.send("Login");
+};
+
 module.exports = {
   register,
+  login,
 };
