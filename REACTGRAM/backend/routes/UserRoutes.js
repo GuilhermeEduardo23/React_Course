@@ -17,7 +17,7 @@ const {
   userCreateValidation,
   loginValidation,
   userUpdateValidation,
-} = require("../middlewares/userValidations");
+} = require("../middlewares/userValidation");
 const imageUpload = require("../middlewares/imageUpload");
 
 // Routes
