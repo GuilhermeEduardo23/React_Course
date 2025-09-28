@@ -12,7 +12,7 @@ const generateToken = (id) => {
 
 // Register user and sign in
 const register = async (req, res) => {
-  const [name, email, password] = req.body;
+  const { name, email, password } = req.body;
 
   // Check if user exists
   const user = await User.findOne({ email });
@@ -57,7 +57,8 @@ const login = async (req, res) => {
   }
 
   // Check if password matches
-  if (!bcrypt.compare(password, user.password)) {
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
     res.status(422).json({ errors: ["Senha inválida."] });
     return;
   }
@@ -74,11 +75,17 @@ const login = async (req, res) => {
 const getCurrentUser = async (req, res) => {
   const user = req.user;
 
-  rest.status(200).json(user);
-}
+  res.status(200).json(user);
+};
+
+// Update an user
+const update = async (req, res) => {
+  res.send("Update");
+};
 
 module.exports = {
   register,
   login,
-  getCurrentUser
+  getCurrentUser,
+  update,
 };
