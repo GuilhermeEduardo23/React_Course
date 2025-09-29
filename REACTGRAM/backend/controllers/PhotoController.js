@@ -20,12 +20,49 @@ const insertPhoto = async (req, res) => {
   });
 
   // If photo was created successfully, return data
-  if (!newPhoto)
+  if (!newPhoto) {
     res
       .status(422)
       .json({ errors: ["Houve um problema, tente novamente mais tarde."] });
 
+    return;
+  }
+
   res.status(201).json(newPhoto);
 };
 
-module.exports = { insertPhoto };
+// Remove a photo from DB
+const deletePhoto = async (req, res) => {
+  const { id } = req.params;
+  const reqUser = req.user;
+
+  try {
+    const photo = Photo.findById(id);
+
+    // Check if photo exists
+    if (!photo) {
+      res.status(404).json({ errors: ["Foto não encontrada."] });
+      return;
+    }
+
+    // Check if photo belongs to user
+    if (!photo.userId.equals(reqUser._id)) {
+      res
+        .status(422)
+        .json({ errors: ["Ocorreu um erro, por favor tente novamente."] });
+
+      return;
+    }
+
+    await Photo.findByIdAndDelete(photo._id);
+
+    res
+      .status(200)
+      .json({ id: photo._id, message: "Foto excluída com sucesso." });
+  } catch (error) {
+    res.status(404).json({ errors: ["Foto não encontrada."] });
+    return;
+  }
+};
+
+module.exports = { insertPhoto, deletePhoto };
