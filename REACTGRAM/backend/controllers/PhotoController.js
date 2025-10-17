@@ -37,7 +37,7 @@ const deletePhoto = async (req, res) => {
   const reqUser = req.user;
 
   try {
-    const photo = Photo.findById(id);
+    const photo = await Photo.findById(id);
 
     // Check if photo exists
     if (!photo) {
@@ -65,4 +65,13 @@ const deletePhoto = async (req, res) => {
   }
 };
 
-module.exports = { insertPhoto, deletePhoto };
+// Get all photos
+const getAllPhotos = async (req, res) => {
+  const photos = await Photo.find({})
+    .sort([["createdAt", -1]])
+    .exec();
+
+  return res.status(200).json(photos);
+};
+
+module.exports = { insertPhoto, deletePhoto, getAllPhotos };
