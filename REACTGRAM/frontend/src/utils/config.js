@@ -22,12 +22,13 @@ export const requestConfig = (method, data, token = null, image = null) => {
       headers: {
         "Content-Type": "application/json",
       },
+      mode: "no-cors",
     };
   }
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
-  };
+  }
 
   return config;
 };
