@@ -22,7 +22,6 @@ export const requestConfig = (method, data, token = null, image = null) => {
       headers: {
         "Content-Type": "application/json",
       },
-      mode: "no-cors",
     };
   }
 

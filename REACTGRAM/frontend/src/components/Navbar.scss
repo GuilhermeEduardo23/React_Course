@@ -25,21 +25,21 @@
             outline: none;
         }
     }
+}
 
-    #nav-links {
-        display: flex;
-        align-items: center;
+#nav-links {
+    display: flex;
+    align-items: center;
 
-        li {
-            margin-right: 1em;
-        }
+    li {
+        margin-right: 1em;
+    }
 
-        span {
-            cursor: pointer;
-        }
+    span {
+        cursor: pointer;
+    }
 
-        svg {
-            font-size: 1.5em;
-        }
+    svg {
+        font-size: 1.5em;
     }
 }

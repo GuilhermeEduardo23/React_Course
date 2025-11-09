@@ -19,7 +19,7 @@ const register = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    res.status(422).json({ errors: ["Por favor, utilize outro email"] });
+    res.status(422).json({ errors: ["Por favor, utilize outro email."] });
     return;
   }
 
@@ -119,7 +119,7 @@ const getUserById = async (req, res) => {
 
     if (!user) {
       // Check if user exists
-      res.status(404).json({ errors: ["Usuário não encontrado 2."] });
+      res.status(404).json({ errors: ["Usuário não encontrado."] });
       return;
     }
 
