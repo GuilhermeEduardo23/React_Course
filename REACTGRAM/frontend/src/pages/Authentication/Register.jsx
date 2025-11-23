@@ -1,5 +1,5 @@
 // Style
-import "./Authentication.scss";
+import "./Auth.scss";
 
 // Components
 import { Link } from "react-router-dom";
