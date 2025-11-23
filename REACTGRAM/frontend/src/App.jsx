@@ -16,7 +16,7 @@ import Login from "./pages/Authentication/Login";
 import Register from "./pages/Authentication/Register";
 
 function App() {
-  const { auth, loading } = useAuth();
+  const [auth, loading] = useAuth();
 
   if (loading) return <p>Carregando...</p>;
 
