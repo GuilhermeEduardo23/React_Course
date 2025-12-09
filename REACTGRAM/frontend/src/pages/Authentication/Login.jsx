@@ -19,7 +19,6 @@ const Login = () => {
 
   const { loading, error } = useSelector((state) => state.auth);
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
