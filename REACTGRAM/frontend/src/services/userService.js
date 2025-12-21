@@ -26,7 +26,7 @@ const updateProfile = async (data, token) => {
 
     return res;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
