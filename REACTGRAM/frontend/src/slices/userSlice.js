@@ -9,7 +9,7 @@ const initialState = {
   message: null,
 };
 
-// Get user details
+// Get user details - Thunk Assíncrono
 export const profile = createAsyncThunk(
   "user/profile",
   async (user, thunkAPI) => {
