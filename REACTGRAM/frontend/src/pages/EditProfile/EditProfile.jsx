@@ -17,15 +17,6 @@ const EditProfile = () => {
 
   const { user, message, error, loading } = useSelector((state) => state.user);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }));
-  };
-
   // states
   const [formData, setFormData] = useState({
     name: "",
@@ -35,6 +26,15 @@ const EditProfile = () => {
     bio: "",
     previewImage: "",
   });
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
 
   // Fill form with user data
   useEffect(() => {
@@ -67,7 +67,7 @@ const EditProfile = () => {
 
       {(user.profileImage || formData.previewImage) && (
         <img
-        className="profile-image"
+          className="profile-image"
           src={
             formData.previewImage
               ? URL.createObjectURL(formData.previewImage)
