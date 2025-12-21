@@ -38,7 +38,7 @@ const EditProfile = () => {
 
   // Fill form with user data
   useEffect(() => {
-    if(user) {
+    if (user) {
       setFormData((prev) => ({
         ...prev,
         name: user.name || "",
@@ -53,8 +53,6 @@ const EditProfile = () => {
     dispatch(profile());
   }, [dispatch]);
 
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -66,30 +64,57 @@ const EditProfile = () => {
         Adicione uma imagem de perfil e conte mais sobre você...
       </p>
       {/* Image preview */}
+
+      {(user.profileImage || formData.previewImage) && (
+        <img
+        className="profile-image"
+          src={
+            formData.previewImage
+              ? URL.createObjectURL(formData.previewImage)
+              : `${uploads}/users/${user.profileImage}`
+          }
+          alt={user.name}
+        />
+      )}
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="name"
           placeholder="Nome"
           onChange={handleChange}
           value={formData.name || ""}
         />
         <input
           type="email"
+          name="email"
           placeholder="E-mail"
           disabled
           value={formData.email || ""}
         />
         <label>
           <span>Imagem do Perfil:</span>
-          <input type="file" />
+          <input type="file" name="profileImage" onChange={handleChange} />
         </label>
         <label>
           <span>Bio:</span>
-          <input type="text" placeholder="Descrição do seu perfil" onChange={handleChange} value={formData.bio || ""}/>
+          <input
+            type="text"
+            name="bio"
+            placeholder="Descrição do seu perfil"
+            onChange={handleChange}
+            value={formData.bio || ""}
+          />
         </label>
         <label>
           <span>Quer alterar sua senha?</span>
-          <input type="password" placeholder="Digite sua nova senha" onChange={handleChange} value={formData.password || ""}/>
+          <input
+            type="password"
+            name="password"
+            placeholder="Digite sua nova senha"
+            onChange={handleChange}
+            value={formData.password || ""}
+          />
         </label>
         <input type="submit" value="Atualizar" />
       </form>
