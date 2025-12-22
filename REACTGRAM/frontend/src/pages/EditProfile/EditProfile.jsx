@@ -66,13 +66,11 @@ const EditProfile = () => {
 
     if (formValues.password) userData.password = formValues.password;
 
+
+    // build form data
     const formData = new FormData();
 
-    console.log(formData);
-
-    Object.keys(userData).forEach((key) =>
-      formData.append(key, userData[key])
-    );
+    Object.keys(userData).forEach((key) => formData.append(key, userData[key]));
 
     await dispatch(updateProfile(formData));
 
