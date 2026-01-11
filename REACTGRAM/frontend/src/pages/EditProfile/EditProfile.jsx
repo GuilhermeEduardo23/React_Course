@@ -66,7 +66,6 @@ const EditProfile = () => {
 
     if (formValues.password) userData.password = formValues.password;
 
-
     // build form data
     const formData = new FormData();
 
@@ -78,6 +77,8 @@ const EditProfile = () => {
       dispatch(resetMessage());
     }, 2000);
   };
+
+  
 
   return (
     <div id="edit-profile">
