@@ -21,6 +21,7 @@ import {
   publishPhoto,
   resetMessage as resetPhotoMessage,
   getUserPhotos,
+  deletePhoto,
 } from "../slices/photoSlice";
 
 const Profile = () => {
@@ -44,6 +45,12 @@ const Profile = () => {
   const newPhotoForm = useRef();
   const editPhotoForm = useRef();
 
+  const resetComponentMessage = () => {
+    setTimeout(() => {
+      dispatch(resetPhotoMessage());
+    }, 2000);
+  }
+
   const submitHandle = (e) => {
     e.preventDefault();
 
@@ -65,10 +72,15 @@ const Profile = () => {
 
     setTitle("");
 
-    setTimeout(() => {
-      dispatch(resetPhotoMessage());
-    }, 2000);
+    resetComponentMessage();
   };
+
+  // Delete a photo
+  const handleDelete = (id) => {
+    dispatch(deletePhoto(id));
+
+    resetComponentMessage();
+  }
 
   const handleFile = (e) => {
     const image = e.target.files[0];
@@ -141,7 +153,7 @@ const Profile = () => {
                       <BsFillEyeFill />
                     </Link>
                     <BsPencilFill />
-                    <BsXLg />
+                    <BsXLg onClick={() => handleDelete(photo._id)}/>
                   </div>
                 ) : (
                   <Link className="btn" to={`/photos/${photo._id}`}>
